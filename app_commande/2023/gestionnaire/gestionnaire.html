@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="res/gestionnaire.css"></style>
+<script type="text/javascript"src='res/gestionnaire.js'></script>
+</head>
+<body>
+
+<div id='cssmenu'>
+<ul>
+   <li><div><span>fichier</span></div>
+		<ul>
+         <li ><div onclick='init("navigateur")'><span>navigateur</span></div></li>
+         <li ><div class='ppdiv'>parcourir</div><span class='ppin'><input class='ppina'type='file' id='fileinput' onchange='charger()'></span></li>
+		<li ><div class='ppdiv'>inserer liste</div><span class='ppin'><input class='ppina'type='file' id='fileinput2' onchange='charger2()'></span></li>
+		
+		</ul>
+	</li>
+   
+     <li><div><span>sauvegarde</span></div>
+		<ul>
+		<li ><div onclick='enregistrer("navigateur")'><span>navigateur</span></div></li>
+		<li ><div onclick='enregistrer("fichier")'><span>fichier</span></div></li>
+        </ul>
+   </li>
+     
+   <li><div onclick="creahtml()"><span>generer page</span></div>
+     
+   </li>
+   
+    <li><div onclick="creahtml('teste')"><span>tester</span></div>
+     
+   </li> 
+     
+   <li><div onclick="orde()" ><span>vue reel</span></div>
+   </li>
+   
+   <li><div onclick='deplace_cat()'><span>deplacer categorie</span></div>
+   </li>
+   
+    <li><div><span>deplacer article</span></div>
+		<ul id='chx_catego'>
+        </ul>
+	</li>
+	
+	  <li><div onclick='renome_categ()'><span>renomer categorie</span></div>
+   </li>
+   
+   <li><div onclick='playdis()'><span>aide</span></div>
+   </li>
+   
+<li><div onclick='init("demo")'><span>demo</span></div>
+		
+	</li>
+   
+   </ul>
+</div>
+
+
+
+
+<div style='width:205px;margin-top:100px;border:groove;padding:10px;border-width:3px;'>
+<div style='display:inline-block'>
+<span style='font-size:20px;margin-left:10px;'>nom:</span>
+<br>
+<input style='height:20px;width:200px;' id='boisson'>
+</div>
+<br>
+<br>
+<div style='display:inline-block'>
+<span style='font-size:20px;margin-left:10px;'>prix :</span>
+<br>
+<input style='height:20px;width:200px;' id='prix'>
+</div>
+<br>
+<br>
+<div style='display:inline-block'>
+<span style='font-size:20px;margin-left:10px;'>categorie :</span>
+<br>
+<input style='height:20px;width:200px;' id='categorie'>
+</div>
+<br>
+<br>
+<div style='display:inline-block'>
+<span style='font-size:20px;margin-left:10px;'>nom de l'image :</span>
+<br>
+<input style='height:20px;width:200px;' id='image'>
+</div>
+
+
+<br><br>
+<button onclick="ajouter()">ajouter</button>
+</div>
+<br><br>
+
+
+
+
+<div id='contetab'>
+<table id='tabentete'>
+<tr id='entete'><th class='th1' onclick="sortTable(0)">nom</th><th class='thprix' onclick="sortTable(1)">prix</th><th class='thcatego' onclick="sortTable(2)">categorie</th><th class='th_image' onclick="sortTable(3)">nom de l'image</th><th class='thmodif' >modif</th><th class='thsup' onclick='supp()'>retirer</th><th class='thfin'></th></tr>
+</table>
+<div id='liste'>
+
+<table id='tabsee'>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<br><br>
+
+
+<div id="ct_cat" class="fenetre">
+<div  onmousedown='kdrag.sp(event);' onmouseup="kdrag.sp()" class='deplace_fenetre'></div>
+<div  id ='categ'></div>
+<div onclick='valid_cat()' class='btn_g_fenetre'>valider</div><div onclick='anu_cat()' class='btn_d_fenetre'>annuler</div>
+</div>
+
+
+<div id="ct_el_cat" class="fenetre">
+<div  onmousedown='kdrag.sp(event);' onmouseup="kdrag.sp()" class='deplace_fenetre'></div>
+<div id="dv_el_cat"></div>
+<div onclick='valid_elem_categ()' class='btn_g_fenetre'>valider</div><div onclick='anu_el_cat()' class='btn_d_fenetre'>annuler</div>
+</div>
+
+
+<div id="renome_cat" class="fenetre">
+<div  onmousedown='kdrag.sp(event);' onmouseup="kdrag.sp()" class='deplace_fenetre'></div>
+<div id="ctn_renome_cat"></div>
+<div class="btn_ctn_fenetre"><div onclick='valide_renome()' class='btn_g_fenetre'>valider</div><div onclick='anu_mod_cat()' class='btn_d_fenetre'>annuler</div></div>
+</div>
+
+
+
+<div id='aide' >
+ <div  onmousedown='kdrag.sp(event);' onmouseup="kdrag.sp()" class='deplace_fenetre'><div onclick='playdis()' style='float:right;cursor:pointer;color:white;margin-top:10px;margin-right:10px'>fermer</div></div>
+<div style='overflow-y:scroll;height:340px;width:100%;font-size:18px;'>
+ 
+ <div style='margin:10px;'>
+ 
+ <br> <br>
+ <h3>mode d'emploi</h3>
+
+ le generateur sert a cree un array javascript contenant une liste de toutes les elements et leurs prix il sert aussi a sauvegarder la liste pour une utilisation ulterieur et permet de gerer cete liste en supprimant rajoutant et modifier des elements.
+ <br> <br>
+<h3> menu</h3>
+
+  <span style="text-decoration:underline">fichier</span> : sert a charger les donné qui on éte soit sauvegardé dans le navigateur(navigateur) soit sauvegardé dans un fichier(parcourir). quand a l'option 'inserer liste' elle sert a rajouter une liste dans la liste courante.
+ <br> <br>
+ <span style="text-decoration:underline">enregistrer</span> : enregistre les donné dans le navigateur ou telecharge le fichier contenant les donné.
+ <br> <br>
+ <span style="text-decoration:underline">generer page</span> : genere la page html complete et lance son telechargement le fichier est a inserer dans le dossier principale.
+ <br> <br>
+ <span style="text-decoration:underline">tester</span> : permet de tester le resultat.
+ <br> <br>
+ <span style="text-decoration:underline">vue reel</span> : affiche les donné selon l'ordre d'affichage du fichier html.
+ <br> <br>
+ <span style="text-decoration:underline">deplacer categorie</span> : permet de modifier la position d'une categorie par drag & drop.
+<br><br>
+<span style="text-decoration:underline">deplacer article</span> : permet de modifier la position d'un article dans sa categorie par drag & drop.
+<br><br>
+<span style="text-decoration:underline">renomer categorie</span> : permet de renomer une catégorie
+<br><br>
+
+<h3>fenetre nom</h3>
+
+saisir le nom a donner a la ligne le nom sera celui qui sera affiché.
+<br> <br>
+
+<h3>prix</h3>
+
+saisir le prix pour la ligne concerné.
+<br> <br>
+
+<h3>categorie</h3>
+indiquer la categorie pour la ligne
+<br> <br>
+
+<h3>nom de l'image</h3>
+indiquer le nom de l'image associé pour la ligne.
+<br> <br>
+
+<h3>modifier ordre</h3>
+modifie l'odre de presentation des categories pour ce faire il suffit de deplacer un element avec la souris par drag and drop.
+<br> <br>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

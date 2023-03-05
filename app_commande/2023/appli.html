@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+ 
+  background: #cde;
+
+}
+
+.ctn{
+height:150px;
+width:500px;
+margin:auto;
+background:#07869b;
+margin-top:10%;
+box-shadow: 5px 5px 10px #222;
+border:5px solid black;
+border-radius:30px;
+border-color:#023146;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.btn{
+
+width:200px;
+margin:auto;
+height:40px;
+cursor:pointer;
+font-size:25px;
+color:#023146;
+text-align:center;
+padding:8px;
+}
+
+.btn1{
+
+
+}
+
+.btn:hover{
+color:black;
+text-decoration:underline;
+
+}
+</style>
+
+<script>
+
+function changer(lien){
+
+	document.location.href=lien
+}
+
+</script>
+</head>
+<body>
+  <div class="ctn">
+  <div onclick="changer('commande/commande.html')" class="btn btn1">application</div>
+  <div onclick="changer('gestionnaire/gestionnaire.html')" class="btn">gestionnaire</div>
+   </div>
+</body>
+</html>
